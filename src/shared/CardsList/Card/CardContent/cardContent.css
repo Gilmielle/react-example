@@ -1,0 +1,23 @@
+.cardContent {
+  display: flex;
+  flex-flow: row wrap;
+}
+.cardContent > * + * {
+  padding: 13px 0 0;
+}
+
+@media all and (min-width: 1024px) {
+  .cardContent {
+    flex-basis: 768px;
+    flex-flow: row nowrap;
+  }
+  .cardContent > * + * {
+    padding: 0;
+  }
+}
+
+@media all and (min-width: 1540px) {
+  .cardContent {
+    flex-basis: 900px;
+  }
+}
