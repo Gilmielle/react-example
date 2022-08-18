@@ -6,6 +6,8 @@ import { Header } from './shared/Header';
 import { Content } from './shared/Content';
 import { CardsList } from './shared/CardsList';
 import { Dropdown } from './shared/Dropdown';
+import { Text } from './shared/Text';
+import { Break } from './shared/Break';
 
 function AppComponent() {
   return (
@@ -13,17 +15,11 @@ function AppComponent() {
       <Header />
       <Content>
         <CardsList />
-        {/* <div style={{ padding: 20 }}>
-          <br/>
-          <Dropdown 
-            onClose={() => console.log('closed')} 
-            onOpen={() => console.log('opened')} 
-            isOpen={false} 
-            button={<button>Test</button>}
-          >
-            <CardsList />
-          </Dropdown>
-        </div> */}
+        {/* <Text size={20} mobileSize={28} bold>Label1</Text>
+        <Break size={8} mobileSize={16} top/>
+        <Text size={20}>Label1</Text>
+        <Break size={8} top/>
+        <Text size={20} mobileSize={16}>Label1</Text> */}
       </Content>
     </Layout>
   )

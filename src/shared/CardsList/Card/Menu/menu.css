@@ -50,6 +50,10 @@
     align-self: center;
     transform: unset;
   }
+
+  .closeButton {
+    display: none;
+  }
 }
 
 @media all and (min-width: 1540px) {

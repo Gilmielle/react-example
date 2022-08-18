@@ -42,3 +42,28 @@
     outline: 1px solid var(--greyD9);
   }
 }
+
+/*  */
+.dropdown {
+  position: absolute;
+  top: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  background-color: var(--white);
+}
+
+.menuItem {
+  padding: 12px 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  column-gap: 7px;
+}
+
+.closeButton {
+  background-color: var(--greyD9);
+  padding: 12px 23px;
+  border-radius: 0 0 3px 3px;
+  width: 100%;
+  text-align: center;
+}
