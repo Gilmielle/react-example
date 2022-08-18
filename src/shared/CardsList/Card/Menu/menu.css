@@ -25,6 +25,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   background-color: var(--white);
+  z-index: 10;
 }
 
 .closeButton {

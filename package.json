@@ -7,8 +7,8 @@
   "scripts": {
     "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "env NODE_ENV=development webpack-dev-server",
-    "devHMR": "env NODE_ENV=development node ./bin/dev.js",
+    "dev": "env NODE_ENV=development CLIENT_ID=U_XNLBmO0ls1fJmnBHww_g node ./bin/dev.js",
+    "devNoHMR": "env NODE_ENV=development webpack-dev-server",
     "test": "jest"
   },
   "repository": {

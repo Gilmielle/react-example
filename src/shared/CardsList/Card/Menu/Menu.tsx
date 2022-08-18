@@ -8,10 +8,7 @@ import { MenuItemsList } from './MenuItemsList';
 export function Menu() {
   return(
     <div className={styles.menu}>
-      <button className={styles.menuButton}>
-        <MenuIcon />
-      </button>
-      {/* <Dropdown
+      <Dropdown
         button={
           <button className={styles.menuButton}>
             <MenuIcon />
@@ -26,7 +23,7 @@ export function Menu() {
             </Text>
           </button>
         </div>
-      </Dropdown> */}
+      </Dropdown>
     </div>
   );
 }
