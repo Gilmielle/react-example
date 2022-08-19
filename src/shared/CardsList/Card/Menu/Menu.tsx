@@ -5,7 +5,11 @@ import { Text, EColors } from '../../../Text';
 import styles from './menu.css';
 import { MenuItemsList } from './MenuItemsList';
 
-export function Menu() {
+interface IMenuProps {
+  postId: string;
+}
+
+export function Menu({ postId }: IMenuProps) {
   return(
     <div className={styles.menu}>
       <Dropdown
@@ -16,7 +20,7 @@ export function Menu() {
         }
       >
         <div className={styles.dropdown}>
-          <MenuItemsList postId='1234' />
+          <MenuItemsList postId={postId} />
           <button className={styles.closeButton}>
             <Text mobileSize={12} size={14} color={EColors.grey66}>
               Закрыть

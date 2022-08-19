@@ -3,17 +3,24 @@ import styles from './textContent.css';
 import { Title } from './Title';
 import { UserLink } from './UserLink';
 
-export function TextContent() {
+interface ITextContentProps {
+  author: string;
+  title: string;
+  createdAt: string;
+  avatarImg: string;
+}
+
+export function TextContent(props: ITextContentProps) {
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>
-        <UserLink />
+        <UserLink author={props.author} avatarImg={props.avatarImg} />
         <span className={styles.createdAt}>
           <span className={styles.publishedLabel}>опубликовано </span>
-          4 часа назад
+          {props.createdAt}
         </span>
       </div>
-      <Title />
+      <Title title={props.title}/>
     </div>
   );
 }

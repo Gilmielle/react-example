@@ -5,23 +5,29 @@ import { Layout } from './shared/Layout';
 import { Header } from './shared/Header';
 import { Content } from './shared/Content';
 import { CardsList } from './shared/CardsList';
-import { Dropdown } from './shared/Dropdown';
-import { Text } from './shared/Text';
-import { Break } from './shared/Break';
+import { useToken } from './hooks/useToken';
+import { tokenContext } from './shared/context/tokenContext';
+import { UserContextProvider } from './shared/context/userContext';
+import { usePostsData } from './hooks/usePostsData';
+import { PostsContextProvider } from './shared/context/postsContext';
 
 function AppComponent() {
+  const [token] = useToken();
+  const [postsData] = usePostsData();
+
   return (
-    <Layout>
-      <Header />
-      <Content>
-        <CardsList />
-        {/* <Text size={20} mobileSize={28} bold>Label1</Text>
-        <Break size={8} mobileSize={16} top/>
-        <Text size={20}>Label1</Text>
-        <Break size={8} top/>
-        <Text size={20} mobileSize={16}>Label1</Text> */}
-      </Content>
-    </Layout>
+    <tokenContext.Provider value={token}>
+      <UserContextProvider>
+        <PostsContextProvider>
+          <Layout>
+            <Header />
+            <Content>
+              <CardsList />
+            </Content>
+          </Layout>
+        </PostsContextProvider>
+      </UserContextProvider>
+    </tokenContext.Provider>
   )
 }
 
