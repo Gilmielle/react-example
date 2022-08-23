@@ -23,8 +23,10 @@ function createPostsData(data: any[]) {
       id: item.data.id,
       commentsNum: item.data.num_comments,
       createdAt: createDateString(new Date(item.data.created * 1000)),
-      avatarImg: item.data.sr_detail.icon_im,
-      previewImg: item.data.preview ? item.data.preview.images[0].source.url : '',
+      avatarImg: item.data.sr_detail.icon_img,
+      previewImg: item.data.preview 
+        ? item.data.preview.images[0].source.url.replace('preview', 'i') 
+        : '',
     };
 
     return postData;
@@ -45,6 +47,7 @@ export function usePostsData() {
     })
       .then((response) => {
         const postsArray = response.data.data.children;
+        console.log(postsArray)
         const posts = createPostsData(postsArray);
         setPostsData(posts);
       })

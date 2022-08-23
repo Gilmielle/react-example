@@ -51,14 +51,14 @@
     align-self: center;
     transform: unset;
   }
-
-  .closeButton {
-    display: none;
-  }
 }
 
 @media all and (min-width: 1540px) {
   .menuButton:hover {
     background-color: rgba(51, 51, 51, 0.1);
+  }
+
+  .closeButton {
+    display: none;
   }
 }

@@ -8,10 +8,13 @@ interface IPreviewProps {
 export function Preview({ previewImg }: IPreviewProps) {
   return (
     <div className={styles.preview}>
-      <img
+      {previewImg 
+      ? <img
           className={styles.previewImg}
           src={previewImg}
         />
+      : <div className={styles.noImg}></div>
+      }
     </div>
   );
 }

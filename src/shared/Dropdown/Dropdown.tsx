@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import styles from './dropdown.css'
 
 interface IDropdownProps {
@@ -13,8 +14,8 @@ const NOOP = () => {};
 
 export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NOOP }: IDropdownProps) {
   const[isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
-  React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen])
-  React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen])
+  React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
+  React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
 
   const handleOpen = () => {
     if(isOpen === undefined) {
@@ -22,18 +23,21 @@ export function Dropdown({ button, children, isOpen, onOpen = NOOP, onClose = NO
     }
   }
 
+  const node = document.querySelector('#dropdown_root');
+  if (!node) return null;
+
   return(
     <div className={styles.container}>
       <div onClick={handleOpen}>
         { button }
       </div>
-      {(isDropdownOpen && (
+      {(isDropdownOpen && ReactDOM.createPortal((
         <div className={styles.listContainer}>
           <div  className={styles.list} onClick={() => setIsDropdownOpen(false)}>
             {children}
           </div>
         </div>
-      ))}
+      ), node))}
     </div>
   )
 }
