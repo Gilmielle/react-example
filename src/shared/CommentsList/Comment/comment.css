@@ -2,25 +2,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 35px;
-}
-
-.container::after {
-  content: '';
-  position: absolute;
-  left: 9px;
-  bottom: 0;
-  width: 3px;
-  height: calc(100% - 65px);
-  background-color: var(--greyD9);
+  row-gap: 20px;
 }
 
 .commentContent {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column-reverse;
   align-items: flex-start;
-  column-gap: 20px;
+  row-gap: 10px;
 }
 
 .body {
@@ -32,6 +21,7 @@
 .header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   column-gap: 4px;
   align-items: center;
 }
@@ -48,7 +38,9 @@
 .controls {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   column-gap: 27px;
+  row-gap: 5px;
   align-items: center;
 }
 
@@ -58,4 +50,29 @@
   column-gap: 5px;
   align-items: center;
   color: var(--grey99);
+}
+
+
+@media all and (min-width: 1024px) {
+  .container {
+    row-gap: 35px;
+  }
+  
+  .container::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    bottom: 0;
+    width: 3px;
+    height: calc(100% - 65px);
+    background-color: var(--greyD9);
+  }
+
+  .commentContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    column-gap: 20px;
+  }
 }

@@ -8,13 +8,14 @@ import { CardsList } from './shared/CardsList';
 import { useToken } from './hooks/useToken';
 import { tokenContext } from './shared/context/tokenContext';
 import { UserContextProvider } from './shared/context/userContext';
-import { usePostsData } from './hooks/usePostsData';
 import { PostsContextProvider } from './shared/context/postsContext';
 import { commentContext } from './shared/context/commentContext';
+import { legacy_createStore } from 'redux';
+
+const store = legacy_createStore(() => {});
 
 function AppComponent() {
   const [token] = useToken();
-  const [postsData] = usePostsData();
   const [commentValue, setCommentValue] = useState('');
 
   const CommentProvider = commentContext.Provider;

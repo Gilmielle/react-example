@@ -17,6 +17,17 @@ export interface IPostData {
 
 function createPostsData(data: any[]) {
   return data.map((item) => {
+    let previewSrc;
+    if (item.data.preview && !item.data.preview.images[0].source.url.startsWith('https://external-preview')) {
+      previewSrc = item.data.preview.images[0].source.url.replace('/preview', '/i') ;
+    } else {
+      if (item.data.thumbnail.startsWith('https:')) {
+        previewSrc = item.data.thumbnail;
+      } else {
+        previewSrc = '';
+      }
+    }
+    
     const postData: IPostData = {
       author: item.data.author,
       title: item.data.title,
@@ -25,9 +36,7 @@ function createPostsData(data: any[]) {
       commentsNum: item.data.num_comments,
       createdAt: createDateString(new Date(item.data.created * 1000)),
       avatarImg: item.data.sr_detail.icon_img,
-      previewImg: item.data.preview 
-        ? item.data.preview.images[0].source.url.replace('/preview', '/i') 
-        : '',
+      previewImg: previewSrc,
       subreddit: item.data.subreddit,
     };
 
@@ -45,7 +54,7 @@ export function usePostsData() {
     })
       .then((response) => {
         const postsArray = response.data.data.children;
-        // console.log(postsArray)
+        console.log(postsArray)
         const posts = createPostsData(postsArray);
         setPostsData(posts);
       })
