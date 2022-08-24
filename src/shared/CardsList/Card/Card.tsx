@@ -18,6 +18,8 @@ export function Card({ postData }: ICardProps) {
         createdAt={postData.createdAt} 
         avatarImg={postData.avatarImg} 
         previewImg={postData.previewImg} 
+        subreddit={postData.subreddit} 
+        id={postData.id}
       />
       <Menu postId={postData.id} />
       <Controls commentsNum={postData.commentsNum} rating={postData.rating} />

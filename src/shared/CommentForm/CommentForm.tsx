@@ -11,6 +11,8 @@ export function CommentForm() {
   //   console.log(ref.current?.value);
   // }
 
+  // FOR THE CONTROLLED COMPONENT
+
   const { value, onChange } = useContext(commentContext);
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {

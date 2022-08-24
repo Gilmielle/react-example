@@ -10,6 +10,7 @@ export interface IPostContextData {
   createdAt: string;
   avatarImg: string;
   previewImg: string;
+  subreddit: string;
 }
 
 export const postsContext = React.createContext<IPostContextData[]>([]);

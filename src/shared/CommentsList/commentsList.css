@@ -1,0 +1,10 @@
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 35px;
+}
+
+.commentsList .commentsList,
+.commentsList form  {
+  margin-left: 20px;
+}

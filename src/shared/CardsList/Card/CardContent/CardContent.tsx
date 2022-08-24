@@ -9,6 +9,8 @@ interface ICardContentProps {
   createdAt: string;
   avatarImg: string;
   previewImg: string;
+  subreddit: string;
+  id: string;
 }
 
 export function CardContent(props: ICardContentProps) {
@@ -19,6 +21,8 @@ export function CardContent(props: ICardContentProps) {
         title={props.title} 
         createdAt={props.createdAt} 
         avatarImg={props.avatarImg} 
+        subreddit={props.subreddit} 
+        id={props.id}
       />
       <Preview previewImg={props.previewImg} />
     </div>

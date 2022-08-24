@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { tokenContext } from "../shared/context/tokenContext";
-import { MONTHS } from "../utils/consts";
+import { createDateString } from "../utils/js/createDateString";
 
 export interface IPostData {
   author: string;
@@ -12,6 +12,7 @@ export interface IPostData {
   createdAt: string;
   avatarImg: string;
   previewImg: string;
+  subreddit: string;
 }
 
 function createPostsData(data: any[]) {
@@ -25,16 +26,13 @@ function createPostsData(data: any[]) {
       createdAt: createDateString(new Date(item.data.created * 1000)),
       avatarImg: item.data.sr_detail.icon_img,
       previewImg: item.data.preview 
-        ? item.data.preview.images[0].source.url.replace('preview', 'i') 
+        ? item.data.preview.images[0].source.url.replace('/preview', '/i') 
         : '',
+      subreddit: item.data.subreddit,
     };
 
     return postData;
   })
-}
-
-function createDateString(date: Date) {
-  return `${date.getDate()} ${MONTHS[(date.getMonth())]} ${date.getFullYear()}`;
 }
 
 export function usePostsData() {
@@ -47,7 +45,7 @@ export function usePostsData() {
     })
       .then((response) => {
         const postsArray = response.data.data.children;
-        console.log(postsArray)
+        // console.log(postsArray)
         const posts = createPostsData(postsArray);
         setPostsData(posts);
       })

@@ -8,6 +8,8 @@ interface ITextContentProps {
   title: string;
   createdAt: string;
   avatarImg: string;
+  subreddit: string;
+  id: string;
 }
 
 export function TextContent(props: ITextContentProps) {
@@ -20,7 +22,7 @@ export function TextContent(props: ITextContentProps) {
           {props.createdAt}
         </span>
       </div>
-      <Title title={props.title}/>
+      <Title title={props.title} subreddit={props.subreddit} id={props.id}/>
     </div>
   );
 }

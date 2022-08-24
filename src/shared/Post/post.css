@@ -27,3 +27,9 @@
   margin: -24px;
   color: #000
 }
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--greyD9);
+}

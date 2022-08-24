@@ -3,10 +3,12 @@ import { Post } from '../../../../../Post';
 import styles from './title.css';
 
 interface ITitleProps {
-  title: string
+  title: string;
+  subreddit: string;
+  id: string;
 }
 
-export function Title({ title }: ITitleProps) {
+export function Title({ title, subreddit, id }: ITitleProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -18,6 +20,9 @@ export function Title({ title }: ITitleProps) {
       {isModalOpen && (
         <Post 
           onClose={() => { setIsModalOpen(false) }}
+          title={title}
+          subreddit={subreddit}
+          id={id}
         />
       )}
     </h2>
