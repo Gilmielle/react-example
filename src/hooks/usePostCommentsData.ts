@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { tokenContext } from "../shared/context/tokenContext";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { createDateString } from "../utils/js/createDateString";
 
 interface IPostComments {
@@ -39,7 +40,7 @@ function createCommentsData(data: any[]): IPostComments[] {
 
 export function usePostCommentsData(subreddit: string, id: string) {
   const [postCommentsData, setPostCommentsData] = useState<IPostComments[]>([]);
-  const token = useContext(tokenContext);
+  const token = useSelector<RootState, string>(state => state.userToken);
   
   useEffect(() => {
     axios.get(`https://oauth.reddit.com/r/${subreddit}/comments/${id}.json?sr_detail=true`, {

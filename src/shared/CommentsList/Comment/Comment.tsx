@@ -3,6 +3,7 @@ import { UserLink } from "../../CardsList/Card/CardContent/TextContent/UserLink"
 import { KarmaCounter } from "../../CardsList/Card/Controls/KarmaCounter";
 import { CommentForm } from "../../CommentForm";
 import { CommentIcon, ShareIcon, WarningIcon } from "../../Icons";
+import { ReplyFormContainer } from "../../ReplyFormContainer";
 import { Text } from "../../Text";
 import styles from './comment.css';
 import { ReplyForm } from "./ReplyForm";
@@ -57,7 +58,7 @@ export function Comment(postData: ICommentProps) {
         </div>
       </div>
       {isReplyFormOpen && (
-        <ReplyForm author={postData.author} />
+        <ReplyFormContainer author={postData.author} />
       )}
       {postData.children}
     </li>

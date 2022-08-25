@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { useCloseModal } from '../../hooks/useCloseModal';
 import { Break } from '../Break';
-import { CommentForm } from '../CommentForm';
+import { CommentFormContainer } from '../CommentFormContainer';
 import { CommentsList } from '../CommentsList';
 import styles from './post.css'
 
@@ -29,7 +29,7 @@ export function Post(props: IPostProps) {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis asperiores quis aut corrupti maxime. Quidem, nisi porro, at eaque neque nihil architecto voluptatem, sapiente enim reprehenderit non corrupti laboriosam autem.</p>
       </div>
 
-      <CommentForm />
+      <CommentFormContainer />
       <Break size={20} top />
       <div className={styles.divider}></div>
       <Break size={20} top />

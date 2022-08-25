@@ -1,32 +1,26 @@
-import React, { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
-import { commentContext } from "../context/commentContext";
+import React, { ChangeEvent, FormEvent, useEffect, useRef } from "react";
 import styles from './commentForm.css';
 
-export function CommentForm() {
-  // FOR THE UNCONTROLLED COMPONENT
+interface ICommentFormProps {
+  value: string;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: (event: FormEvent) => void;
+  autofocus?: boolean;
+}
 
-  // const ref = useRef<HTMLTextAreaElement>(null);
-  // function handleSubmit(event: FormEvent) {
-  //   event.preventDefault();
-  //   console.log(ref.current?.value);
-  // }
+export function CommentForm({ value, onChange, onSubmit, autofocus = false }: ICommentFormProps) {
+  const ref = useRef<HTMLTextAreaElement>(null);
 
-  // FOR THE CONTROLLED COMPONENT
-
-  const { value, onChange } = useContext(commentContext);
-
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    onChange(event.target.value)
-  }
-  
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    console.log(value)
-  }
+  useEffect(() => {
+    if(ref.current !== null && autofocus) {
+      ref.current.focus();
+      ref.current.selectionStart = ref.current.value.length;
+    }
+  }, []);
 
   return(
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <textarea className={styles.input} value={value} onChange={handleChange} />
+    <form className={styles.form} onSubmit={onSubmit}>
+      <textarea className={styles.input} value={value} onChange={onChange} ref={ref} />
       <button className={styles.button} type="submit">Комментировать</button>
     </form>
   );

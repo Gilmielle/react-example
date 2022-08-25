@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { tokenContext } from "../shared/context/tokenContext";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { createDateString } from "../utils/js/createDateString";
 
 export interface IPostData {
@@ -46,7 +47,7 @@ function createPostsData(data: any[]) {
 
 export function usePostsData() {
   const [postsData, setPostsData] = useState<IPostData[]>([]);
-  const token = useContext(tokenContext);
+  const token = useSelector<RootState, string>(state => state.userToken);
   
   useEffect(() => {
     axios.get('https://oauth.reddit.com/best.json?sr_detail=true', {
@@ -54,7 +55,7 @@ export function usePostsData() {
     })
       .then((response) => {
         const postsArray = response.data.data.children;
-        console.log(postsArray)
+        // console.log(postsArray)
         const posts = createPostsData(postsArray);
         setPostsData(posts);
       })
