@@ -5,36 +5,29 @@ import { Layout } from './shared/Layout';
 import { Header } from './shared/Header';
 import { Content } from './shared/Content';
 import { CardsList } from './shared/CardsList';
-import { useToken } from './hooks/useToken';
-import { UserContextProvider } from './shared/context/userContext';
 import { PostsContextProvider } from './shared/context/postsContext';
-import { legacy_createStore } from 'redux';
+import { applyMiddleware, legacy_createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { rootReducer, setToken } from './store';
-import { useDispatch } from 'react-redux';
+import { rootReducer, saveToken, setToken } from './store/reducer';
+import thunk from 'redux-thunk';
 
-const store = legacy_createStore(rootReducer, composeWithDevTools());
+const store = legacy_createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(thunk),
+));
 
 function AppComponent() {
-  const [token] = useToken();
-  const dispatch = useDispatch();
-  if (token !== 'undefined') {
-    dispatch(setToken(token))
-  }
-  
+  store.dispatch<any>(saveToken());
 
   return (
-    <UserContextProvider>
-      <PostsContextProvider>
-        <Layout>
-          <Header />
-          <Content>
-            <CardsList />
-          </Content>
-        </Layout>
-      </PostsContextProvider>
-    </UserContextProvider>
+    <PostsContextProvider>
+      <Layout>
+        <Header />
+        <Content>
+          <CardsList />
+        </Content>
+      </Layout>
+    </PostsContextProvider>
   )
 }
 

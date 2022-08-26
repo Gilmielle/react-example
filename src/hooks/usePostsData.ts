@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../store/reducer";
 import { createDateString } from "../utils/js/createDateString";
 
 export interface IPostData {
