@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useContext } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, updateComment } from "../../store/reducer";
 import { CommentForm } from "../CommentForm";
+import { useFormik } from "formik";
 
 export function CommentFormContainer() {
   // то же самое, что ниже
@@ -19,12 +20,21 @@ export function CommentFormContainer() {
     event.preventDefault();
     console.log(value)
   }
+  
+  const formik = useFormik({
+    initialValues: {
+      comment: '',
+    },
+    onSubmit: values => {
+      console.log(JSON.stringify(values.comment));
+    },
+  });
 
   return(
     <CommentForm 
-      value={value}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
+      value={formik.values.comment}
+      onChange={formik.handleChange}
+      onSubmit={formik.handleSubmit}
     />
   );
 }

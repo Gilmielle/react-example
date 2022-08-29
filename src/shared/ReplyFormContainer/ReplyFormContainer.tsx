@@ -23,6 +23,7 @@ export function ReplyFormContainer({ author }: IReplyFormProps) {
       onChange={handleChangeControlled}
       onSubmit={handleSubmit}
       autofocus={true}
+      buttonText={'Ответить'}
     />
   );
 }
