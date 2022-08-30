@@ -45,22 +45,71 @@ function createPostsData(data: any[]) {
   })
 }
 
-export function usePostsData() {
-  const [postsData, setPostsData] = useState<IPostData[]>([]);
+export function usePostsData(ref: React.RefObject<HTMLElement>) {
   const token = useSelector<RootState, string>(state => state.userToken);
-  
-  useEffect(() => {
-    axios.get('https://oauth.reddit.com/best.json?sr_detail=true', {
-      headers: { Authorization: `bearer ${token}` }
-    })
-      .then((response) => {
-        const postsArray = response.data.data.children;
-        // console.log(postsArray)
-        const posts = createPostsData(postsArray);
-        setPostsData(posts);
-      })
-      .catch(console.log);
-  }, [token]);
+  const [posts, setPosts] = useState<IPostData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState('');
+  const [nextAfter, setNextAfter] = useState('');
+  const [isMultipleOfThree, setIsMultipleOfThree] = useState(false);
+  const postsLimit = 10;
 
-  return [postsData];
+  useEffect(() => {
+    if (!token) return;
+
+    async function load() {
+      setLoading(true);
+      setErrorLoading('')
+
+      try {
+        const { data: { data: { after, children } } } = await axios.get('https://oauth.reddit.com/best.json?sr_detail=true', {
+          headers: { Authorization: `bearer ${token}` },
+          params: {
+            limit: postsLimit,
+            after: nextAfter,
+          }
+        });
+
+        const postsArray = createPostsData(children);
+        setNextAfter(after);
+        setPosts(prevChildren => {
+          const posts = prevChildren.concat(...postsArray);
+
+          if (posts.length % (postsLimit * 3) === 0) {
+            setIsMultipleOfThree(true);
+          } else {
+            setIsMultipleOfThree(false);
+          }
+
+          return posts;
+        });
+
+      } catch (error) {
+        setErrorLoading(String(error));
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (isMultipleOfThree) return
+        load();
+      }
+    }, {
+      rootMargin: '50px',
+    });
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    }
+  }, [nextAfter, token]);
+
+  return [{ posts, loading, errorLoading, isMultipleOfThree }];
 }

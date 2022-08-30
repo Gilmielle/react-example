@@ -2,4 +2,23 @@
   .cardsList {
     padding: 40px 0;
   }
+
+  .loadingBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    animation: rotateSpinner 2s linear infinite;
+  }
+
+  @keyframes rotateSpinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
