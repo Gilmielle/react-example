@@ -93,7 +93,7 @@ export function usePostsData(ref: React.RefObject<HTMLElement>) {
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        if (isMultipleOfThree) return
+        if (isMultipleOfThree || loading) return
         load();
       }
     }, {
@@ -109,7 +109,7 @@ export function usePostsData(ref: React.RefObject<HTMLElement>) {
         observer.unobserve(ref.current);
       }
     }
-  }, [nextAfter, token]);
+  }, [nextAfter, token, isMultipleOfThree, loading]);
 
-  return [{ posts, loading, errorLoading, isMultipleOfThree }];
+  return [{ posts, loading, errorLoading, isMultipleOfThree, setIsMultipleOfThree }];
 }

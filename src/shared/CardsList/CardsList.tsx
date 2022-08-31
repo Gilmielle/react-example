@@ -3,10 +3,11 @@ import { Card } from './Card';
 import styles from './cardslist.css';
 import { usePostsData } from '../../hooks/usePostsData';
 import { LoadingIcon } from '../Icons';
+import { EColors, Text } from '../Text';
 
 export function CardsList() {
   const bottomOfList = useRef<HTMLDivElement>(null);
-  const [{ posts, loading, errorLoading, isMultipleOfThree }] = usePostsData(bottomOfList);
+  const [{ posts, loading, errorLoading, isMultipleOfThree, setIsMultipleOfThree }] = usePostsData(bottomOfList);
 
   return (
     <ul className={styles.cardsList}>
@@ -23,7 +24,11 @@ export function CardsList() {
       ))}
 
       {isMultipleOfThree && (
-        <button>Загрузить ещё</button>
+        <button className={styles.moreBtn} onClick={() => { setIsMultipleOfThree(false) }}>
+          <Text size={20} color={EColors.orange} bold>
+            Загрузить ещё
+          </Text>
+        </button>
       )}
 
       <div ref={bottomOfList} />

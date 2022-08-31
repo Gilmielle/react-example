@@ -3,6 +3,28 @@
     padding: 40px 0;
   }
 
+  .moreBtn {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 2px solid var(--orange);
+    transition-property: opacity, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .moreBtn:hover {
+    background-color: var(--orange);
+  }
+
+  .moreBtn:hover > span {
+    color: var(--white);
+  }
+
+  .moreBtn:active {
+    opacity: 0.7;
+  }
+
   .loadingBlock {
     display: flex;
     align-items: center;
