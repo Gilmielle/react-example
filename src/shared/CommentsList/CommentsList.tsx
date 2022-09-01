@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { usePostCommentsData } from "../../hooks/usePostCommentsData";
 import styles from './commentsList.css';
 import { Comment } from './Comment';

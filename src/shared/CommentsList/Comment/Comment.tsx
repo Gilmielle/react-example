@@ -1,12 +1,10 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, {useState } from "react";
 import { UserLink } from "../../CardsList/Card/CardContent/TextContent/UserLink";
 import { KarmaCounter } from "../../CardsList/Card/Controls/KarmaCounter";
-import { CommentForm } from "../../CommentForm";
 import { CommentIcon, ShareIcon, WarningIcon } from "../../Icons";
 import { ReplyFormContainer } from "../../ReplyFormContainer";
 import { Text } from "../../Text";
 import styles from './comment.css';
-import { ReplyForm } from "./ReplyForm";
 
 interface ICommentProps {
   author: string;
