@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { rootReducer, saveToken } from './store/reducer';
 import thunk from 'redux-thunk';
-import { BrowserRouter, Redirect, Route, Switch, useHistory } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { Post } from './shared/Post';
 
 const store = legacy_createStore(rootReducer, composeWithDevTools(
