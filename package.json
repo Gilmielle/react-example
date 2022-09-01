@@ -4,9 +4,6 @@
   "description": "Training react app",
   "main": "index.js",
   "private": "true",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
     "build": "env NODE_ENV=production webpack --config webpack.config.js",
