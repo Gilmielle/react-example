@@ -1,12 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-export function useCloseModal(onClose?: () => void) {
-  const ref = useRef<HTMLDivElement>(null);
-
+export function useCloseModal(ref: React.RefObject<HTMLElement>, history: any) {
   useEffect(() => {
     function handleClick(event: MouseEvent) {
       if (event.target instanceof Node && !ref.current?.contains(event.target))
-      onClose?.();
+      history.push('/posts')
     }
     document.addEventListener('click', handleClick);
 
@@ -14,6 +12,4 @@ export function useCloseModal(onClose?: () => void) {
       document.removeEventListener('click', handleClick);
     }
   }, [])
-
-  return [ref];
 }

@@ -38,12 +38,12 @@ function createCommentsData(data: any[]): IPostComments[] {
   return result;
 }
 
-export function usePostCommentsData(subreddit: string, id: string) {
+export function usePostCommentsData( id: string) {
   const [postCommentsData, setPostCommentsData] = useState<IPostComments[]>([]);
   const token = useSelector<RootState, string>(state => state.userToken);
   
   useEffect(() => {
-    axios.get(`https://oauth.reddit.com/r/${subreddit}/comments/${id}.json?sr_detail=true`, {
+    axios.get(`https://oauth.reddit.com/comments/${id}.json?sr_detail=true`, {
       headers: { Authorization: `bearer ${token}` }
     })
       .then((response) => {
@@ -52,7 +52,7 @@ export function usePostCommentsData(subreddit: string, id: string) {
         setPostCommentsData(comments);
       })
       .catch(console.log);
-  }, [subreddit, id]);
+  }, [id]);
 
   return [postCommentsData];
 }

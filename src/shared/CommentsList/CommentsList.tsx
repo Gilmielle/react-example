@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { usePostCommentsData } from "../../hooks/usePostCommentsData";
 import styles from './commentsList.css';
 import { Comment } from './Comment';
-import { generateRandomString } from "../../utils/react/generateRandomIndex";
 
 interface ICommentsListProps {
-  subreddit: string;
   id: string;
 }
 
-export function CommentsList({ subreddit, id }: ICommentsListProps) {
-  const [comments] = usePostCommentsData(subreddit, id);
+export function CommentsList({ id }: ICommentsListProps) {
+  const [comments] = usePostCommentsData(id);
   
   function createCommentsList<T extends Array<any>>(array: T) {
     return (

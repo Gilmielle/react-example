@@ -22,7 +22,7 @@ export function TextContent(props: ITextContentProps) {
           {props.createdAt}
         </span>
       </div>
-      <Title title={props.title} subreddit={props.subreddit} id={props.id}/>
+      <Title title={props.title} id={props.id}/>
     </div>
   );
 }
