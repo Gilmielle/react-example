@@ -11,7 +11,10 @@ const DEV_PLUGINS = [
   new CleanWebpackPlugin(),
   new HotModuleReplacementPlugin(),
 ];
-const COMMON_PLUGINS = [ new DefinePlugin({ 'pocess.env.CLIENT_ID': `'${process.env.CLIENT_ID}'` }) ];
+const COMMON_PLUGINS = [ new DefinePlugin({ 
+  'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`,
+  'process.env.DOMAIN': `'${process.env.DOMAIN}'` 
+}) ];
 
 function setupDevtool() {
   if (IS_DEV) return 'eval';
@@ -19,61 +22,61 @@ function setupDevtool() {
 }
 
 module.exports = {
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-    alias: {
-      'react-dom': IS_DEV ? '@hot-loader/react-dom': 'react-dom',
-    }
-  },
-  mode: NODE_ENV ? NODE_ENV : 'development',
-  entry: [
-    path.resolve(__dirname, '../src/client/index.jsx'),
-    'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
-  ],
-  output: {
-    path: path.resolve(__dirname, '../dist/client'),
-    filename: 'client.js',
-    publicPath:'/static/',
-  },
-  module: {
-    rules: [
-      {
-        test: /.[tj]sx?$/,
-        use: ['ts-loader'],
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader', 
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[name]__[local]--[hash:base64:5]',
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      alias: {
+        'react-dom': IS_DEV ? '@hot-loader/react-dom': 'react-dom',
+      }
+    },
+    mode: NODE_ENV ? NODE_ENV : 'development',
+    entry: [
+      path.resolve(__dirname, '../src/client/index.jsx'),
+      'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
+    ],
+    output: {
+      path: path.resolve(__dirname, '../dist/client'),
+      filename: 'client.js',
+      publicPath:'/static/',
+    },
+    module: {
+      rules: [
+        {
+          test: /.[tj]sx?$/,
+          use: ['ts-loader'],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader', 
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  mode: 'local',
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                },
               },
             },
-          },
-          // 'less-loader',
-        ],
-        exclude: GLOBAL_CSS_REGEXP,
-      },
-      {
-        test: GLOBAL_CSS_REGEXP,
-        use: ['style-loader', 'css-loader'],
-      }
-    ],
-  },
-  // plugins: [
-  //   new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')})
-  // ],
-  // devServer: {
-  //   port: 3000,
-  //   open: true,
-  //   hot: IS_DEV,
-  // },
-  devtool: setupDevtool(),
-  plugins: IS_DEV 
-    ? DEV_PLUGINS.concat(COMMON_PLUGINS)
-    : COMMON_PLUGINS,
+            // 'less-loader',
+          ],
+          exclude: GLOBAL_CSS_REGEXP,
+        },
+        {
+          test: GLOBAL_CSS_REGEXP,
+          use: ['style-loader', 'css-loader'],
+        }
+      ],
+    },
+    // plugins: [
+    //   new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')})
+    // ],
+    // devServer: {
+    //   port: 3000,
+    //   open: true,
+    //   hot: IS_DEV,
+    // },
+    devtool: setupDevtool(),
+    plugins: IS_DEV 
+      ? DEV_PLUGINS.concat(COMMON_PLUGINS)
+      : COMMON_PLUGINS,
 }
