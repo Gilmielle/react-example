@@ -10,10 +10,10 @@
   "scripts": {
     "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
     "build": "env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "env NODE_ENV=development CLIENT_ID=U_XNLBmO0ls1fJmnBHww_g node ./bin/dev.js",
+    "dev": "env NODE_ENV=development CLIENT_ID=U_XNLBmO0ls1fJmnBHww_g SECRET=EweHA3O3Ic5mOyJYWEK1zkJ9RA9Rpw DOMAIN=http://localhost:3000 node ./bin/dev.js",
     "devNoHMR": "env NODE_ENV=development webpack-dev-server",
     "test": "jest",
-    "start": "node ./dist/server/server.js"
+    "start": "env CLIENT_ID=OqnVRv7Iw2mD6PGacYgq8A SECRET=Ej0Dhv0rS9_gCuDuGcKdFnSddkVCLw DOMAIN=https://first-react-app-jb.herokuapp.com node ./dist/server/server.js"
   },
   "repository": {
     "type": "git",
