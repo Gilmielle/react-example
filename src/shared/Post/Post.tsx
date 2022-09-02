@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useCloseModal } from '../../hooks/useCloseModal';
 import { Break } from '../Break';
 import { CommentFormContainer } from '../CommentFormContainer';
+import { CommentFormContainerJotai } from '../CommentFormContainer/CommentFormContainerJotai';
+import { CommentFormContainerMobX } from '../CommentFormContainer/CommentFormContainerMobX';
 import { CommentsList } from '../CommentsList';
 import styles from './post.css'
 
@@ -33,7 +35,9 @@ export function Post() {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis asperiores quis aut corrupti maxime. Quidem, nisi porro, at eaque neque nihil architecto voluptatem, sapiente enim reprehenderit non corrupti laboriosam autem.</p>
       </div>
 
-      <CommentFormContainer />
+      {/* <CommentFormContainer /> */}
+      {/* <CommentFormContainerMobX /> */}
+      <CommentFormContainerJotai />
       <Break size={20} top />
       <div className={styles.divider}></div>
       <Break size={20} top />

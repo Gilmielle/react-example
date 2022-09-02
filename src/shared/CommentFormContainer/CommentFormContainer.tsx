@@ -1,9 +1,10 @@
-import React, { ChangeEvent, FormEvent, useContext } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, updateComment } from "../../store/reducer";
 import { CommentForm } from "../CommentForm";
 // import { useFormik } from "formik";
 
+// realization with Redux
 export function CommentFormContainer() {
   // то же самое, что ниже
   // const store = useStore<RootState>();
