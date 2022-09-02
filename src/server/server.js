@@ -13,6 +13,7 @@ const app = express();
 
 app.use(compression());
 app.use(helmet({
+  crossOriginEmbedderPolicy: false,
   contentSecurityPolicy: false,
 }));
 
